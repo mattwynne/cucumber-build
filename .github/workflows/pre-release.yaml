@@ -56,7 +56,7 @@ jobs:
       released_version: ${{ needs.versions.outputs.released-version }}
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@v2
