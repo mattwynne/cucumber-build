@@ -77,7 +77,7 @@ jobs:
           Review this PR carefully. When it's merged, the v${{ env.next_version }} release will happen automatically.
           EOT
           gh pr create \
-            --repo mattwynne/build \
+            --repo mattwynne/cucumber-build \
             --base releases \
             --title "Release v${{ env.next_version }}" \
             --body-file ${{ runner.temp }}/body \
