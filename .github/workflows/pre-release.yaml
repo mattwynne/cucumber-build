@@ -54,11 +54,13 @@ jobs:
     env:
       next_version: ${{ needs.versions.outputs.next-version }}
       released_version: ${{ needs.versions.outputs.released-version }}
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
       - uses: actions/checkout@v2
         with:
           ref: main
           fetch-depth: 0
+      - run: gh auth status
       - run: git checkout -b pre-release/v${{ env.next_version }}
       - run: git push --force --set-upstream origin pre-release/v${{ env.next_version }}
       - name: Create Pull Request
@@ -76,5 +78,3 @@ jobs:
             --title "Release v${{ env.next_version }}" \
             --body-file ${{ runner.temp }}/body \
             --reviewer @cucumber/build
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
