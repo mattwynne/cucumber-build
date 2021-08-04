@@ -18,11 +18,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Read version to release from the changelog
         id: next-release
-        uses: mattwynne/changelog-action@v1.2
+        uses: cucumber-actions/changelog-action@v1.3
         with:
           args: latest
       - name: Set version environment variable
-        run: echo "version"=${{ steps.next-release.outputs.output }} > $GITHUB_ENV
+        run: echo "version"=${{ steps.next-release.outputs.result }} > $GITHUB_ENV
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
